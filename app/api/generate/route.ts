@@ -3,7 +3,7 @@ import { generateMeditationShort } from "@/lib/generator/generator";
 import { getUserFromRequest } from "@/lib/auth";
 
 export async function POST(req: Request) {
-  const user = getUserFromRequest();
+  const user = await getUserFromRequest();
 
   if (!user) {
     console.log("no userrrrrrr");
