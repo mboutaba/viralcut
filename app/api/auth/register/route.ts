@@ -3,20 +3,22 @@ import { db } from "@/lib/db";
 import { hashPassword } from "@/lib/password";
 
 export async function POST(req: Request) {
-  const { email, password } = await req.json();
+  const { name, email, password } = await req.json();
 
-  if (!email || !password) {
+  if (!email || !password || !name) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
   const hashed = await hashPassword(password);
 
+
+
+
   try {
     await db.run(
-      "INSERT INTO users (email, password) VALUES (?, ?)",
-      email,
-      hashed
-    );
+  "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+  [name, email, hashed]);
+
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "User exists" }, { status: 400 });

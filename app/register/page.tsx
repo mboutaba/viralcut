@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function RegisterPage() {
+     const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
  const [errorMessage, setErrorMessage] = useState("");
@@ -12,7 +13,7 @@ export default function RegisterPage() {
     await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, email, password }),
     }).then(res => res.json())
     .then(res => {
         if(res.success){
@@ -24,26 +25,26 @@ export default function RegisterPage() {
     );  
     
   }
-
-//   return (
-//     <div>
-//       <h1>Register</h1>
-//       <input onChange={e => setEmail(e.target.value)} />
-//       <input type="password" onChange={e => setPassword(e.target.value)} />
-//       <button onClick={submit}>Register</button>
-//     </div>
-//   );
-// }
+ 
 
 
 return (
-   <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-slate-950 to-black text-gray-100">
+        <div className="min-h-screen  bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
    
     <main className="flex-1 flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-md rounded-3xl bg-white/6 backdrop-blur border border-white/10 shadow-xl p-6">
           <h2 className="text-2xl font-bold mb-4">Welcome back</h2>
 
           {errorMessage && <p className="text-sm text-red-400 mb-3">{errorMessage}</p>}
+
+            <label className="block text-sm text-gray-300 mb-1">Name</label>
+          <input
+            className="w-full mb-4 px-3 py-2 rounded-md bg-white/5 border placeholder-gray-400"
+            placeholder="your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled={loading}
+          />
 
           <label className="block text-sm text-gray-300 mb-1">Email</label>
           <input
@@ -97,4 +98,3 @@ return (
     </div>
   );
 }
-

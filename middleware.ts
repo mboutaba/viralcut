@@ -6,10 +6,10 @@ import type { NextRequest } from "next/server";
  
 
 export async function middleware(req: NextRequest) {
-  
+
   const user = getUserFromRequest();
 
-  const protectedPaths = [ "/generator", "/api/generate"];
+  const protectedPaths = [ "/generator", "/api/generate", "/dashboard"];
 
   const isProtected = protectedPaths.some(path =>
     req.nextUrl.pathname.startsWith(path)

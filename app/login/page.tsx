@@ -17,8 +17,8 @@ export default function LoginPage() {
     }).then(res => res.json())
     .then(res => {
         if(res.success){
-            console.log("logged in");
-            location.href = "/generator";
+             
+            location.href = "/dashboard";
         }else{
             setErrorMessage(res.error)
         }
@@ -27,7 +27,9 @@ export default function LoginPage() {
   }
 
   return (
-   <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-slate-950 to-black text-gray-100">
+        <div className="min-h-screen  bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
+
+   {/* <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-slate-950 to-black text-gray-100"> */}
    
     <main className="flex-1 flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-md rounded-3xl bg-white/6 backdrop-blur border border-white/10 shadow-xl p-6">

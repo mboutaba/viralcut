@@ -7,5 +7,6 @@ export function signJWT(payload: object) {
 }
 
 export function verifyJWT(token: string) {
+  console.log("playload is", jwt.verify(token, JWT_SECRET))
   return jwt.verify(token, JWT_SECRET);
 }
