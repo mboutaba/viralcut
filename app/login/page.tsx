@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Footer from "@/components/layout/Footer";
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -27,11 +29,8 @@ export default function LoginPage() {
   }
 
   return (
-        <div className="min-h-screen  bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
-
-   {/* <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-slate-950 to-black text-gray-100"> */}
-   
-    <main className="flex-1 flex items-center justify-center px-4 py-8">
+ <div className="min-h-screen  bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
+  <main className="flex-1 flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-md rounded-3xl bg-white/6 backdrop-blur border border-white/10 shadow-xl p-6">
           <h2 className="text-2xl font-bold mb-4">Welcome back</h2>
 
@@ -83,7 +82,7 @@ export default function LoginPage() {
 
 
 
-
+          <Footer/>
 
       
     </div>

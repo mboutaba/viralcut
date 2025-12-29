@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
 
   const user = getUserFromRequest();
 
-  const protectedPaths = [ "/generator", "/api/generate", "/dashboard"];
+  const protectedPaths = [ "/generator", "/api/generate", "/dashboard" , "/api/auth/logout"];
 
   const isProtected = protectedPaths.some(path =>
     req.nextUrl.pathname.startsWith(path)

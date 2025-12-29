@@ -1,56 +1,103 @@
 "use client";
 
-import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { LogOut } from 'lucide-react';
+
+
+
+
+
 
 export default function Header() {
-  const { data: session } = useSession();
 
-  const nickname =
-    (session && (session.user as any)?.name) ||
-    (session && session.user?.email?.split("@")[0]) ||
-    "User";
-  const initials = nickname?.[0]?.toUpperCase() || "U";
+  const [user, setUser] = useState<any>(null);
+
+  const router = useRouter();
+
+
+  useEffect(() => {
+    async function fetchUser() {
+
+      const res = await fetch("/api/me");
+      const data = await res.json();
+
+
+      if (!data.success) {
+        router.push("/login");
+
+        return;
+
+      }
+
+      setUser(data.user);
+
+    }
+
+    fetchUser();
+  }, []);
+
+
+  async function logout() {
+
+    await fetch("/api/auth/logout", {
+      method: "POST"
+    }).then(res => res.json())
+      .then(res => {
+        if (res.success) {
+
+          router.push("/");
+        }
+      }
+      )
+
+
+  }
+
 
   return (
-    <header className="border-b border-white/10 backdrop-blur bg-black/30">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-          Motiva AI
-        </h1>
 
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-400 hidden sm:block">
-            AI-powered calming video generator
+
+
+    <nav className="fixed top-0 left-0 right-0 z-50 h-16 bg-slate-950/80 backdrop-blur-xl border-b border-white/10">
+  <div className="h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    
+    {/* Left side (logo / title if you want later) */}
+    <div className="flex items-center gap-2">
+      {/* Logo or App Name */}
+    </div>
+
+    {/* Right side (ALWAYS visible) */}
+    {user && ( <div className="flex items-center gap-4">
+      
+      {/* User info */}
+      <div className="flex items-center gap-3">
+        <div className="w-9 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+          {user?.name?.charAt(0) || "U"}
+        </div>
+
+        <div className="hidden sm:flex flex-col leading-tight">
+          <span className="text-sm font-medium text-white">
+            {user?.name}
           </span>
-
-          {session ? (
-            <div className="flex items-center gap-3">
-              <div
-                title={nickname}
-                className="w-9 h-9 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold"
-              >
-                {initials}
-              </div>
-
-              <span className="text-sm text-gray-200 hidden md:block">
-                {nickname}
-              </span>
-
-              <button
-                onClick={() => signOut({ callbackUrl: "/" })}
-                className="ml-2 inline-flex items-center gap-2 rounded-md bg-white/6 px-3 py-1 text-sm text-white hover:bg-white/10"
-              >
-                Disconnect
-              </button>
-            </div>
-          ) : (
-            <Link href="/login" className="text-sm text-white/90">
-              Sign in
-            </Link>
-          )}
+          <span className="text-xs text-slate-400">
+            Pro Plan
+          </span>
         </div>
       </div>
-    </header>
-  );
+
+      {/* Logout */}
+      <button
+        onClick={logout}
+        className="flex items-center gap-2 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition"
+      >
+        <LogOut className="w-4 h-4" />
+        <span className="hidden sm:inline">Logout</span>
+      </button>
+    </div>)}
+
+  </div>
+</nav>
+
+  )
 }

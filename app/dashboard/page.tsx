@@ -4,6 +4,7 @@ import {  useEffect, useState } from 'react';
 import { Play, Plus, Video, TrendingUp, Clock, Download, Eye, MoreVertical, Settings, LogOut, Menu, X, Sparkles, Filter } from 'lucide-react';
 import { useRouter } from "next/navigation"; 
 import Link from "next/link";
+import  Header  from "@/components/layout/Header";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -31,6 +32,7 @@ export default function Dashboard() {
 
   const filteredVideos = filter === 'all' ? videos : videos.filter(v => v.status === filter);
 
+  
 
   useEffect(() => {
       async function fetchUser() {
@@ -55,9 +57,11 @@ export default function Dashboard() {
 
   return (
 
-    
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
      
+    
+    <div className="pt-16   min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
+     
+    <Header /> 
      
       {!user && (<div className="flex items-center justify-center min-h-screen">
      <div className="w-10 h-10 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin"></div>
@@ -66,7 +70,7 @@ export default function Dashboard() {
      
      {user && (<main>
       {/* Sidebar */}
-      {sidebarOpen && <aside className={`fixed top-0 left-0 h-full w-64 bg-slate-950/95 backdrop-blur-xl border-r border-white/10 z-50 transform transition-transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+      {sidebarOpen && <aside className={`fixed top-16 left-0 h-full w-64 bg-slate-950/95 backdrop-blur-xl border-r border-white/10 z-50 transform transition-transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         <div className="p-6">
           <div className="flex items-center gap-2 mb-8">
             <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
@@ -95,21 +99,7 @@ export default function Dashboard() {
           </nav>
         </div>
 
-        <div className="absolute bottom-0 w-full p-6 border-t border-white/10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center font-semibold">
-              JD
-            </div>
-            <div className="flex-1">
-              <div className="font-semibold text-sm">{user?.name}</div>
-              <div className="text-xs text-slate-400">Pro Plan</div>
-            </div>
-          </div>
-          <button className="flex items-center gap-2 text-slate-400 hover:text-white transition text-sm">
-            <LogOut className="w-4 h-4" />
-            <span>Logout</span>
-          </button>
-        </div>
+       
       </aside>}
 
       {/* sidebar Menu Button */}
@@ -130,7 +120,7 @@ export default function Dashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {stats.map((stat, idx) => (
             <div key={idx} className="p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 transition">
               <div className="flex items-center justify-between mb-4">
@@ -145,7 +135,7 @@ export default function Dashboard() {
               <div className="text-sm text-slate-400">{stat.label}</div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Quick Actions */}
         <div className="grid md:grid-cols-3 gap-4 mb-8">
@@ -243,5 +233,6 @@ export default function Dashboard() {
       </main>
       </main>)}
     </div>
+     
   );
 }
