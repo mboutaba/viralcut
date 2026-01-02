@@ -18,9 +18,10 @@ export default function RegisterPage() {
     }).then(res => res.json())
     .then(res => {
         if(res.success){
+          setErrorMessage(res.message)
             location.href = "/login";
         }else{
-            setErrorMessage(res.error)
+            setErrorMessage(res.message)
         }
     }
     );  

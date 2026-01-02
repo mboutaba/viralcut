@@ -6,8 +6,12 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import  Header  from "@/components/layout/Header";
 
+
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const [activeTab, setActiveTab] = useState('dashboard');
+    
   const [filter, setFilter] = useState('all');
 
   const [user, setUser] = useState<any>(null);
@@ -61,7 +65,7 @@ export default function Dashboard() {
     
     <div className="pt-16   min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
      
-    <Header /> 
+   <Header /> 
      
       {!user && (<div className="flex items-center justify-center min-h-screen">
      <div className="w-10 h-10 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin"></div>
@@ -70,7 +74,7 @@ export default function Dashboard() {
      
      {user && (<main>
       {/* Sidebar */}
-      {sidebarOpen && <aside className={`fixed top-16 left-0 h-full w-64 bg-slate-950/95 backdrop-blur-xl border-r border-white/10 z-50 transform transition-transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+      {/* {sidebarOpen && <aside className={`fixed top-16 left-0 h-full w-64 bg-slate-950/95 backdrop-blur-xl border-r border-white/10 z-50 transform transition-transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         <div className="p-6">
           <div className="flex items-center gap-2 mb-8">
             <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
@@ -80,19 +84,16 @@ export default function Dashboard() {
           </div>
 
           <nav className="space-y-2">
-            <a href="#" className="flex items-center gap-3 px-4 py-3 bg-purple-500/20 border border-purple-500/30 rounded-lg text-purple-300">
+            <a onClick={() => {setActiveTab("dashboard")}} className="flex items-center gap-3 px-4 py-3 bg-purple-500/20 border border-purple-500/30 rounded-lg text-purple-300">
               <Video className="w-5 h-5" />
               <span>Dashboard</span>
             </a>
-            <a href="#" className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-lg transition">
+            <a onClick={() => {setActiveTab("generator")}} className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-lg transition">
               <Plus className="w-5 h-5" />
               <span>Create Video</span>
             </a>
-            <a href="#" className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-lg transition">
-              <Sparkles className="w-5 h-5" />
-              <span>Templates</span>
-            </a>
-            <a href="#" className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-lg transition">
+           
+            <a onClick={() => {setActiveTab("settings")}} className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-lg transition">
               <Settings className="w-5 h-5" />
               <span>Settings</span>
             </a>
@@ -100,18 +101,18 @@ export default function Dashboard() {
         </div>
 
        
-      </aside>}
+      </aside>} */}
 
       {/* sidebar Menu Button */}
-      <button
+      {/* <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
         className="fixed top-4 left-4 z-50 p-2 bg-slate-950/95 backdrop-blur-xl border border-white/10 rounded-lg"
       >
         {sidebarOpen ? <X /> : <Menu />}
-      </button>
+      </button> */}
 
       {/* Main Content */}
-     <main className="mx-auto p-4 lg:p-8 max-w-7xl w-full">
+    <main className="mx-auto p-4 lg:p-8 max-w-7xl w-full">
 
         {/* Header */}
         <div className="mb-8">
@@ -137,7 +138,7 @@ export default function Dashboard() {
           ))}
         </div> */}
 
-        {/* Quick Actions */}
+       
         <div className="grid md:grid-cols-3 gap-4 mb-8">
          <Link href="/generator">
           <button className="btn p-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition transform hover:scale-105 text-left">
@@ -167,7 +168,7 @@ export default function Dashboard() {
               <p className="text-slate-400">Manage and download your generated videos</p>
             </div>
 
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <button
                 onClick={() => setFilter('all')}
                 className={`px-4 py-2 rounded-lg transition ${filter === 'all' ? 'bg-purple-500 text-white' : 'bg-white/5 hover:bg-white/10'}`}
@@ -186,7 +187,7 @@ export default function Dashboard() {
               >
                 Processing
               </button>
-            </div>
+            </div> */}
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -230,7 +231,12 @@ export default function Dashboard() {
             ))}
           </div>
         </div>
-      </main>
+      </main> 
+
+
+
+
+
       </main>)}
     </div>
      

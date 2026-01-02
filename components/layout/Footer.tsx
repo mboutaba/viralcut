@@ -22,7 +22,7 @@ export default function Footer() {
               <h4 className="font-semibold mb-4">Product</h4>
               <ul className="space-y-2 text-slate-400">
                 <li><a href="#" className="hover:text-purple-400 transition">Features</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">Pricing</a></li>
+                <li><a href="/pricing" className="hover:text-purple-400 transition">Pricing</a></li>
                 <li><a href="#" className="hover:text-purple-400 transition">Templates</a></li>
               </ul>
             </div>
@@ -37,9 +37,9 @@ export default function Footer() {
             <div>
               <h4 className="font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-slate-400">
-                <li><a href="#" className="hover:text-purple-400 transition">Privacy</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">Terms</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">Contact</a></li>
+                <li><a href="/privacy" className="hover:text-purple-400 transition">Privacy</a></li>
+                <li><a href="/terms" className="hover:text-purple-400 transition">Terms</a></li>
+                <li><a href="/contact" className="hover:text-purple-400 transition">Contact</a></li>
               </ul>
             </div>
           </div>
