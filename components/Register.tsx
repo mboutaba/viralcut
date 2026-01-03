@@ -31,7 +31,7 @@ export default function RegisterPage({ switchToLogin }: { switchToLogin: () => v
 
 
   return (
-    <div className="max-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
+    <div className="max-h-screen   from-slate-950 via-purple-950 to-slate-950 text-white">
 
       <main className="flex-1 flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-md rounded-3xl bg-white/6 backdrop-blur border border-white/10 shadow-xl p-6">

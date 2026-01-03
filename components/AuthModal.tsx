@@ -15,7 +15,7 @@ export default function AuthModal({
         <div className="fixed inset-0 z-50 flex items-center  justify-center">
             {/* Background blur + overlay */}
             <div
-                className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+                className="absolute inset-0 bg-black/55 backdrop-blur-sm"
                 onClick={onClose}
             />
 

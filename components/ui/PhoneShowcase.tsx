@@ -9,6 +9,7 @@ interface PhoneProps {
 }
 
 const PhoneShowcase: React.FC = () => {
+  
   const videos = [
     './videos/video_1766860648771.mp4',
     './videos/video_1766860903116.mp4',

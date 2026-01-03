@@ -89,23 +89,23 @@ export default function LandingPage() {
   const [mode, setMode] = useState<"login" | "register">("register");
 const router = useRouter();
 
-  useEffect(() => {
-      async function fetchUser() {
+  // useEffect(() => {
+  //     async function fetchUser() {
        
-         const res = await fetch("/api/me");
-          const data = await res.json();
+  //        const res = await fetch("/api/me");
+  //         const data = await res.json();
    
   
-         if (data.success) {
+  //        if (data.success) {
           
-             router.push("/dashboard");
+  //            router.push("/dashboard");
             
-            return; 
-          }
-        }
+  //           return; 
+  //         }
+  //       }
 
-      fetchUser();
-    }, []);
+  //     fetchUser();
+  //   }, []);
 
 
 
@@ -173,8 +173,8 @@ const router = useRouter();
   ];
 
   return (
-    <div className="min-h-screen  bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
-      
+
+     <div>
        <AuthModal isOpen={open} onClose={() => setOpen(false)}>
         {mode === "register" ? (
          <Register switchToLogin={() => setMode("login")} />
@@ -183,9 +183,9 @@ const router = useRouter();
           <Login switchToRegister={() => setMode("register")} />
         )}
       </AuthModal>
-      
-      
-      
+
+    <div className="min-h-screen  bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-slate-950/80 backdrop-blur-xl border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -233,7 +233,7 @@ const router = useRouter();
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4">
+      <section className="pt-32 pb-32 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/20 border border-purple-500/30 rounded-full mb-6 backdrop-blur-sm">
@@ -268,16 +268,19 @@ const router = useRouter();
         </div>
       </section>
 
- <section id="showcase" className="py-10 ">
-      <div className=" pb-10 ">
+ <section id="showcase" className="py-28 px-4 border-t border-white/10">
+      <div className="max-w-7xl mx-auto flex justify-center">
               <PhoneShowcase />
             
           </div>
 </section>
+
+ 
+
       {/* Features Section */}
-      <section id="features" className="py-20 px-4">
+      <section id="features" className="py-28 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Everything You Need to Scale</h2>
             <p className="text-xl text-slate-400">Powerful features designed for content creators</p>
           </div>
@@ -297,8 +300,8 @@ const router = useRouter();
       </section>
 
       {/* Social Proof */}
-      <section className="py-20 px-4 bg-white/5">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="py-24 px-4 bg-white/5">
+        <div className="max-w-7xl mx-auto text-center mb-20">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="text-4xl font-bold text-purple-400 mb-2">50K+</div>
@@ -325,7 +328,7 @@ const router = useRouter();
 
 
       
-         <section id="pricing" className="pt-16 py-20 pt-40 ">
+         <section id="pricing" className="py-32 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
@@ -501,10 +504,10 @@ const router = useRouter();
       </div>
     </section>
        
-      
+    
 
       {/* FAQ Section */}
-      <section id="faq" className="py-20 px-4">
+      <section id="faq" className="py-28 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
@@ -534,6 +537,6 @@ const router = useRouter();
      <Footer/>
 
 
-    </div>
+    </div> </div>
   );
 }
